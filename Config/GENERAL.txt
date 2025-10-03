@@ -1,5 +1,11 @@
+# 系统资源占用查看工具
+CONFIG_PACKAGE_btop=y
+# dig命令
+CONFIG_PACKAGE_bind-dig=y
+# ss 网络抓包工具
+CONFIG_PACKAGE_ss=y
 #插件调整
-CONFIG_PACKAGE_luci-app-homeproxy=n
+CONFIG_PACKAGE_luci-app-homeproxy=y
 #增加插件
 CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-gecoosac=n
