@@ -1,7 +1,3 @@
-# --- Transparent Proxy with sing-box on OpenWrt ---
-CONFIG_PACKAGE_momo=y
-CONFIG_PACKAGE_luci-app-momo=y
-CONFIG_PACKAGE_luci-i18n-momo-zh-cn=y
 # --- Disk Management and Filesystem Support ---
 # Diskman main package
 CONFIG_PACKAGE_luci-app-diskman=y
