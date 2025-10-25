@@ -1,4 +1,10 @@
-# --- app-nft ---
+# --- 基于 IP 的带宽限速（QoS） ---
+CONFIG_PACKAGE_luci-app-qos
+# --- 基于 IP 的带宽限速（QoS） ---
+CONFIG_PACKAGE_luci-app-eqos
+# --- 网络带宽监控 ---
+CONFIG_PACKAGE_luci-app-nlbwmon
+# --- 基于 nftables 的流量控制（QoS） ---
 CONFIG_PACKAGE_luci-app-nft-qos=y
 CONFIG_PACKAGE_luci-i18n-nft-qos-zh-cn=y
 # 网络通信工具
@@ -22,8 +28,6 @@ CONFIG_PACKAGE_ntfs-3g=y
 CONFIG_PACKAGE_btop=y
 # dig命令
 CONFIG_PACKAGE_bind-dig=y
-# ss 网络抓包工具
-CONFIG_PACKAGE_ss=y
 #插件调整
 CONFIG_PACKAGE_luci-app-homeproxy=y
 #增加插件
