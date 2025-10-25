@@ -74,6 +74,7 @@ UPDATE_PACKAGE "viking" "VIKINGYFY/packages" "main" "" "luci-app-timewol luci-ap
 UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 UPDATE_PACKAGE "qosmate" "hudra0/qosmate" "main"
 UPDATE_PACKAGE "luci-app-qosmate" "hudra0/luci-app-qosmate" "main"
+UPDATE_PACKAGE "nft-qos" "rosywrt/nft-qos" "master"
 
 #更新软件包版本
 UPDATE_VERSION() {
