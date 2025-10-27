@@ -1,7 +1,14 @@
+CONFIG_PACKAGE_luci-app-turboacc=y
+# ss 网络抓包工具
+CONFIG_PACKAGE_ss=y
+# BBR 拥塞控制算法(终端侧) + CAKE 一种现代化的队列管理算法(路由侧)
+CONFIG_PACKAGE_kmod-tcp-bbr=y
+CONFIG_DEFAULT_tcp_cubic=y
 # --- 命令行网络数据包分析工具 ---
 CONFIG_PACKAGE_tcpdump=y
 # 网络通信工具
 CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_tcping=y
 # --- Disk Management and Filesystem Support ---
 # Diskman main package
 CONFIG_PACKAGE_luci-app-diskman=y
