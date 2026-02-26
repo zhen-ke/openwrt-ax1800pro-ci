@@ -1,7 +1,7 @@
 # daed
-CONFIG_PACKAGE_luci-app-daed=y
-CONFIG_PACKAGE_luci-app-dae=y
-CONFIG_PACKAGE_luci-app-momo=y
+CONFIG_PACKAGE_luci-app-daed=n
+CONFIG_PACKAGE_luci-app-dae=n
+CONFIG_PACKAGE_luci-app-momo=n
 # ss 网络抓包工具
 CONFIG_PACKAGE_ss=y
 # BBR 拥塞控制算法(终端侧) + CAKE 一种现代化的队列管理算法(路由侧)
@@ -17,6 +17,8 @@ CONFIG_PACKAGE_tcping=y
 CONFIG_PACKAGE_luci-app-diskman=y
 # Support for USB storage devices
 CONFIG_PACKAGE_kmod-usb-storage=y
+# 挂载点自动管理增强 (硬盘休眠)
+CONFIG_PACKAGE_luci-app-hd-idle=y
 # Filesystem tools (for formatting and checking disks)
 # It is highly recommended to add these for diskman to be useful
 # For EXT4 (Linux's most common filesystem)
@@ -27,12 +29,13 @@ CONFIG_PACKAGE_kmod-fs-vfat=y
 CONFIG_PACKAGE_dosfstools=y
 # For NTFS (Windows hard drive format)
 CONFIG_PACKAGE_ntfs-3g=y
+CONFIG_PACKAGE_antfs-mount=y
 # 系统资源占用查看工具
 CONFIG_PACKAGE_btop=y
 # dig命令
 CONFIG_PACKAGE_bind-dig=y
 #插件调整
-CONFIG_PACKAGE_luci-app-homeproxy=y
+CONFIG_PACKAGE_luci-app-homeproxy=n
 #增加插件
 CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-gecoosac=n
@@ -43,6 +46,9 @@ CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-wolplus=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-terminal=y
+CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_vim-full=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
 #删除插件
 CONFIG_PACKAGE_luci-app-wol=n
