@@ -7,6 +7,7 @@ UPDATE_PACKAGE() {
 	local PKG_BRANCH=$3
 	local PKG_SPECIAL=$4
 	local PKG_LIST=("$PKG_NAME" $5)  # 第5个参数为自定义名称列表
+	local PKG_FALLBACK_BRANCH=$6
 	local REPO_NAME=${PKG_REPO#*/}
 
 	echo " "
@@ -28,8 +29,15 @@ UPDATE_PACKAGE() {
 		fi
 	done
 
-	# 克隆 GitHub 仓库
-	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
+	# 克隆 GitHub 仓库，优先指定分支/tag，失败时按需回退到备用分支
+	if ! git clone --depth=1 --single-branch --branch "$PKG_BRANCH" "https://github.com/$PKG_REPO.git"; then
+		if [ -n "$PKG_FALLBACK_BRANCH" ]; then
+			echo "Clone $PKG_BRANCH failed, fallback to $PKG_FALLBACK_BRANCH"
+			git clone --depth=1 --single-branch --branch "$PKG_FALLBACK_BRANCH" "https://github.com/$PKG_REPO.git" || return 1
+		else
+			return 1
+		fi
+	fi
 
 	# 处理克隆的仓库
 	if [[ "$PKG_SPECIAL" == "pkg" ]]; then
@@ -44,7 +52,7 @@ UPDATE_PACKAGE() {
 # UPDATE_PACKAGE "OpenAppFilter" "destan19/OpenAppFilter" "master" "" "custom_name1 custom_name2"
 # UPDATE_PACKAGE "open-app-filter" "destan19/OpenAppFilter" "master" "" "luci-app-appfilter oaf" 这样会把原有的open-app-filter，luci-app-appfilter，oaf相关组件删除，不会出现coremark错误。
 
-# UPDATE_PACKAGE "包名" "项目地址" "项目分支" "pkg/name，可选，pkg为从大杂烩中单独提取包名插件；name为重命名为包名"
+# UPDATE_PACKAGE "包名" "项目地址" "项目分支或tag" "pkg/name，可选，pkg为从大杂烩中单独提取包名插件；name为重命名为包名" "自定义名称列表，可选" "备用分支，可选"
 UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
 UPDATE_PACKAGE "momo" "nikkinikki-org/OpenWrt-momo" "main"
 UPDATE_PACKAGE "nikki" "nikkinikki-org/OpenWrt-nikki" "main"
@@ -63,7 +71,7 @@ UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5" "" "v2dat"
 UPDATE_PACKAGE "netspeedtest" "sirpdboy/luci-app-netspeedtest" "js" "" "homebox speedtest"
 UPDATE_PACKAGE "openlist2" "sbwml/luci-app-openlist2" "main"
 UPDATE_PACKAGE "openlist" "sbwml/luci-app-openlist" "main"
-UPDATE_PACKAGE "partexp" "sirpdboy/luci-app-partexp" "main"
+UPDATE_PACKAGE "partexp" "sirpdboy/luci-app-partexp" "v1.3.2" "" "" "main"
 UPDATE_PACKAGE "qbittorrent" "sbwml/luci-app-qbittorrent" "master" "" "qt6base qt6tools rblibtorrent"
 UPDATE_PACKAGE "qmodem" "FUjr/QModem" "main"
 UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
